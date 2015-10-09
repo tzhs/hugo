@@ -11,9 +11,11 @@ weight: 10
 ---
 ## **0.15.0** ???
 
+* Have Jekyll site, but dreaming of porting it to Hugo? This release introduces a new `hugo import jekyll`command that makes this easier than ever. [1469](https://github.com/spf13/hugo/pull/1469)
 * We now use a custom-built `LazyFileReader` for reading file contents, which means we don't read media files in `/content` into memory anymore -- and file reading is now performed in parallel on multicore PCs. [1181](https://github.com/spf13/hugo/issues/1181)
 * Hugo is now built with `Go 1.5` which, among many other improvements, have fixed the last known data race in Hugo. [917] (https://github.com/spf13/hugo/issues/917)
 * Lots of fixes and improvements in the template funcs:
+	* The new `dict` function that could be used to pass maps into a template.[1463](https://github.com/spf13/hugo/pull/1463) 
 	* The new `pluralize` and `singularize` template funcs. 
 	* The new `base64Decode` and `base64Encode` template funcs.
 	* The `sort` template func now accepts field/key chaining arguments and pointer values. [1330](https://github.com/spf13/hugo/issues/1330)
@@ -40,10 +42,10 @@ weight: 10
 * Paginator now also supports page groups. [1274](https://github.com/spf13/hugo/issues/1274)
 * `page.HasMenuCurrent()` and `node.HasMenuCurrent()` now work correctly in multi-level nested menus.
 * Several new information elements have been added to `Page` and `Node`:
-	*  `RuneCount` : This may be a good alternative to `WordCount` for Japanese and other CJK languages where a word-split by spaces makes no sense. [1266](https://github.com/spf13/hugo/issues/1266)
+sense. [1266](https://github.com/spf13/hugo/issues/1266)
 	* `RawContent`: Raw Markdown as a string. One use case may be of embedding remarkjs.com slides.
 	* The new `IsHome` tells the truth about whether you're on the home page or not.
-* Hugo now supports GitHub-flavoured markdown code fences for highlighting for `md`-files (Blackfriday rendered markdown). [362] (https://github.com/spf13/hugo/issues/362)
+* Hugo now supports GitHub-flavoured markdown code fences for highlighting for `md`-files (Blackfriday rendered markdown) and `mmark` files (MMark rendered markdown). [362] (https://github.com/spf13/hugo/issues/362)[1258](https://github.com/spf13/hugo/issues/1258)
 * Ace templates:
 	* Base templates now also works in themes. [1215](https://github.com/spf13/hugo/issues/1215).
 	* And now also on Windows. [1178](https://github.com/spf13/hugo/issues/1178)

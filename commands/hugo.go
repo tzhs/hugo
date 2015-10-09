@@ -67,7 +67,10 @@ var Source, CacheDir, Destination, Theme, BaseURL, CfgFile, LogFile, Editor stri
 func Execute() {
 	HugoCmd.SetGlobalNormalizationFunc(helpers.NormalizeHugoFlags)
 	AddCommands()
-	utils.StopOnErr(HugoCmd.Execute())
+	if err := HugoCmd.Execute(); err != nil {
+		// the err is already logged by Cobra
+		os.Exit(-1)
+	}
 }
 
 //AddCommands adds child commands to the root command HugoCmd.
@@ -83,6 +86,7 @@ func AddCommands() {
 	HugoCmd.AddCommand(undraftCmd)
 	HugoCmd.AddCommand(genautocompleteCmd)
 	HugoCmd.AddCommand(gendocCmd)
+	HugoCmd.AddCommand(importCmd)
 }
 
 //Initializes flags
@@ -164,6 +168,7 @@ func LoadDefaultSettings() {
 	viper.SetDefault("RSSUri", "index.xml")
 	viper.SetDefault("SectionPagesMenu", "")
 	viper.SetDefault("DisablePathToLower", false)
+	viper.SetDefault("HasCJKLanguage", false)
 }
 
 // InitializeConfig initializes a config file with sensible default configuration flags.
